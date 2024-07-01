@@ -19,9 +19,9 @@
       </div>
       <div *ngIf="presentaciones.length > 0">
         <label for="id_presentacion">Presentación:</label>
-        <select id="id_presentacion" [(ngModel)]="formData.id_presentacion" name="id_presentacion" (change)="onPresentacionChange()" required>
+        <select id="id_presentacion" [(ngModel)]="formData.id_productopresentacion" name="id_presentacion" (change)="onPresentacionChange()" required>
           <option *ngFor="let presentacion of presentaciones" [value]="presentacion.id_presentacion">
-            {{ presentacion.nombre }}
+            {{ presentacion.Presentacion.nombre }}
           </option>
         </select>
       </div>

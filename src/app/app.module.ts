@@ -24,6 +24,7 @@ import { AdminProductosComponent } from './admin/admin-productos/admin-productos
 import { ClientePedidoComponent } from './cliente/cliente-pedido/cliente-pedido.component';
 import { MmodalComponent } from './shared/mmodal/mmodal.component';
 import { AdminAbastecerComponent } from './admin/admin-abastecer/admin-abastecer.component';
+import { DistribuidorPedidosComponent } from './distribuidor/distribuidor-pedidos/distribuidor-pedidos/distribuidor-pedidos.component';
 
 
 
@@ -44,7 +45,8 @@ import { AdminAbastecerComponent } from './admin/admin-abastecer/admin-abastecer
     AdminProductosComponent,
     MmodalComponent,
     ClientePedidoComponent,
-    AdminAbastecerComponent
+    AdminAbastecerComponent,
+    DistribuidorPedidosComponent
   ],
   imports: [
     BrowserModule,

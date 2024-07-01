@@ -10,7 +10,7 @@ interface Presentacion {
 interface FormData {
   id_distribuidor: number | null;
   id_producto: number | null;
-  id_presentacion: number | null;
+  id_productopresentacion: number | null;
   stock: number | null;
   precio: number | null;
 }
@@ -24,7 +24,7 @@ export class AdminAbastecerComponent implements OnInit {
   formData: FormData = {
     id_distribuidor: null,
     id_producto: null,
-    id_presentacion: null,
+    id_productopresentacion: null,
     stock: null,
     precio: null
   };
@@ -33,7 +33,7 @@ export class AdminAbastecerComponent implements OnInit {
   
   distribuidores :any= [];
   productos :any= [];
-  presentaciones: Presentacion[]  = [];
+  presentaciones: any[]  = [];
 
   constructor(
     private AdminService: AdminServiceService,
@@ -62,8 +62,13 @@ export class AdminAbastecerComponent implements OnInit {
   
   onProductoChange() {
     if (this.formData.id_producto) {
-      this.AdminService.obtenerPresentacionPorProducto(this.formData.id_producto).subscribe(
-        data => this.formData.precio = data.precio,
+      this.AdminService.obtenerPresentacionesPorProducto(this.formData.id_producto).subscribe(
+        data => {
+          this.presentaciones = data;
+          // Reset the form data related to presentation when product changes
+          this.formData.id_productopresentacion = null;
+          this.formData.precio = null;
+        },
         error => console.error(error)
       );
     }
@@ -71,12 +76,14 @@ export class AdminAbastecerComponent implements OnInit {
 
 
   onPresentacionChange() {
-    const selectedPresentacion = this.presentaciones.find(p => p.id_presentacion === this.formData.id_presentacion);
-    if (selectedPresentacion) {
-      this.formData.precio = selectedPresentacion.precio;
-      
-    }
+    const id=this.formData.id_productopresentacion;
+    this.presentaciones.forEach(element => {
+      if (element.id_presentacion == this.formData.id_productopresentacion) {
+        this.formData.precio = element.Presentacion ? element.Presentacion.precio : element.precio; // Maneja ambos casos
+      }
+    });
   }
+
 
   onSubmit() {
     this.AdminService.abastecerDistribuidor(this.formData).subscribe(

@@ -1,15 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ClienteServiceService } from '../cliente/cliente-service.service';
 
 @Component({
   selector: 'app-cliente-home',
   templateUrl: './cliente-home.component.html',
   styleUrls: ['./cliente-home.component.css']
 })
-export class ClienteHomeComponent implements OnInit{
-  username: string =''; //Inicializar la propiedad
+export class ClienteHomeComponent implements OnInit {
+  username: string = ''; //Inicializar la propiedad
+  pedidos: any[] = [];
+  idCliente: string = '';
 
-  constructor(private router: Router) {}
+
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     const clienteJson = localStorage.getItem('cliente');

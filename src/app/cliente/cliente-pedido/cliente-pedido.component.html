@@ -1,7 +1,5 @@
 <div class="container mt-5">
-
   <div class="row">
-    
     <div class="col-md-6 p-3">
       <h2>Realizar Pedido</h2>
       <div class="row">
@@ -17,63 +15,65 @@
           <tbody>
             <tr *ngFor="let producto of productos">
               <td>{{ producto.nombre }}</td>
-              <td>{{ producto.presentacionNombre }}</td>
-              <td>{{ producto.precio }}</td>
               <td>
-                <label>
-                  <input 
-                    type="checkbox" 
-                    [checked]="productoSeleccionado(producto)" 
-                    (change)="toggleProductoSeleccionado(producto, $event)"
-                  >
-                </label>
+                <select name="presentacion" id="presentacion" (change)="onPresentacionChange($event, producto)">
+                  <option disabled selected>Seleccione una presentacion</option>
+                  <option *ngFor="let presentacion of producto.presentaciones" [value]="presentacion.id_presentacion">
+                    {{ presentacion.Presentacion.nombre }}
+                  </option>
+                </select>
+              </td>
+              <td>{{ producto.precioSeleccionado }}</td>
+              <td>
+                <button 
+                  class="btn btn-primary" 
+                  (click)="agregarAlPedido(producto)" 
+                  [disabled]="producto.presentacionSeleccionada && isProductoPresentacionEnPedido(producto, producto.presentacionSeleccionada)">
+                  Agregar
+                </button>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
+    </div>
+    <div class="col-md-6 p-3">
+      <h2>Mi Pedido</h2>
+      <div class="row">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Presentación</th>
+              <th>Cantidad</th>
+              <th>Precio</th>
+              <th>Eliminar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let detalle of pedido.detalles">
+              <td>{{ detalle.producto.nombre }}</td>
+              <td>{{ detalle.presentacion.nombre }}</td>
+              <td>
+                <input 
+                  type="number" 
+                  [(ngModel)]="detalle.cantidad" 
+                  [min]="1" 
+                  [max]="detalle.producto.stock" 
+                  (change)="cambiarCantidad(detalle, $event)"
+                >
+              </td>
+              <td>{{ detalle.precio * detalle.cantidad }}</td>
+              <td>
+                <button class="btn btn-danger" (click)="eliminarProducto(detalle)">Eliminar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-      <div class="col-md-6 p-3">
-        <h2>Mi Pedido</h2>
-        <div class="row">
-          <table class="table table-bordered">
-            <thead>
-              <tr>
-                <th>Nombre</th>
-                <th>Presentación</th>
-                <th>Cantidad</th>
-                <th>Precio</th>
-                <th>Eliminar</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let detalle of pedido.detalles">
-                <td>{{ detalle.producto.nombre }}</td>
-                <td>{{ detalle.producto.presentacionNombre }}</td>
-                <td>
-                  <input 
-                    type="number" 
-                    [value]="detalle.cantidad" 
-                    [min]="1" 
-                    [max]="detalle.producto.stock" 
-                    (change)="cambiarCantidad(detalle, $event)"
-                  >
-                </td>
-                <td>{{ detalle.producto.precio }}</td>
-                <td>
-                  <button class="btn btn-danger" (click)="eliminarProducto(detalle)">Eliminar</button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        </div>
+    </div>
   </div>
   <button class="btn btn-success mt-3" (click)="realizarPedido()">Realizar Pedido</button>
-
-  
-
-
 </div>
 
 <app-mmodal

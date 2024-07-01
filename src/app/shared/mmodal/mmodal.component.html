@@ -32,8 +32,19 @@
       </div>
       <div class="modal-body">
         <ng-container *ngIf="tipo === 1">
-            <h2>ejemplo</h2>
-            <button (click)="Selectdistribuidor(distribuidores.id)"></button>
+          <div *ngFor="let distribuidor of distribuidores">
+            <div class="card mb-3">
+              <div class="card-body">
+                <h5 class="card-title">{{ distribuidor.nombre }} {{ distribuidor.apellido }}</h5>
+                <p class="card-text">Dirección: {{ distribuidor.direccion }}</p>
+                <p class="card-text">Teléfono: {{ distribuidor.telefono }}</p>
+                <p class="card-text">Email: {{ distribuidor.email }}</p>
+                <button class="btn btn-primary" (click)="Selectdistribuidor(distribuidor)">
+                  Seleccionar
+                </button>
+              </div>
+            </div>
+          </div>
         </ng-container>
       </div>
     </div>

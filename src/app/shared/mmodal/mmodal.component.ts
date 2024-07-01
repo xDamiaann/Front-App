@@ -12,7 +12,7 @@ export class MmodalComponent {
   @Input() icono: string = '';
   @Input() titulo: string = '';
   @Input() descripcion: string = '';
-  @Input() distribuidores: any = [];
+  @Input() distribuidores: any[] = [];
   
   @Output() selectDistr: EventEmitter<any> = new EventEmitter();
 
@@ -37,8 +37,8 @@ export class MmodalComponent {
   }
 
 
-  Selectdistribuidor(event:any){
- this.selectDistr.emit(event);
+  Selectdistribuidor(distribuidor: any) {
+    this.selectDistr.emit(distribuidor);
   }
 
 }

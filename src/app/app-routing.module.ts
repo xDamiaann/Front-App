@@ -18,6 +18,7 @@ import { AdminPresentacionesComponent } from './admin/admin-presentaciones/admin
 import { AdminProductosComponent } from './admin/admin-productos/admin-productos.component';
 import { ClientePedidoComponent } from './cliente/cliente-pedido/cliente-pedido.component';
 import { AdminAbastecerComponent } from './admin/admin-abastecer/admin-abastecer.component';
+import { DistribuidorPedidosComponent } from './distribuidor/distribuidor-pedidos/distribuidor-pedidos/distribuidor-pedidos.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -30,15 +31,16 @@ const routes: Routes = [
   { path: 'distribuidor-home', component: DistribuidorHomeComponent }, //ruta para la pagina de inicio del distribuidor
   { path: 'admin-home', component: AdminHomeComponent }, //ruta para la pagina de inicio del admin
   { path: 'solicitud-distribuidor', component: SolicitudDistribuidorComponent }, //ruta para la solicitud del distribuidor
-  { path: 'admin-solicitudes', component: AdminSolicitudesComponent}, // ruta para admin solicitudes
+  { path: 'admin-solicitudes', component: AdminSolicitudesComponent }, // ruta para admin solicitudes
   { path: 'admin-parroquias', component: AdminParroquiasComponent }, // ruta para la gestion de parroquias
-  { path:'admin-barrios', component:AdminBarriosComponent}, //ruta para la gestion de barrios 
-  { path: 'admin-estado-pedidos', component:AdminEstadoPedidosComponent}, //ruta para la gestion de estado de pedidos
-  { path: 'admin-estado-solicitudes', component:AdminEstadoSolicitudesComponent}, //ruta para la gestion de solicitudes
-  { path: 'admin-presentaciones', component:AdminPresentacionesComponent}, //ruta para la gestion de presentaciones del producto
-  { path: 'admin-productos', component:AdminProductosComponent}, //ruta para la gestion de productos
-  { path: 'cliente-pedido', component:ClientePedidoComponent}, //ruta para la realizacion del pedido
-  { path: 'admin-abastecer', component:AdminAbastecerComponent} //ruta para abastecer a los distribuidores
+  { path: 'admin-barrios', component: AdminBarriosComponent }, //ruta para la gestion de barrios 
+  { path: 'admin-estado-pedidos', component: AdminEstadoPedidosComponent }, //ruta para la gestion de estado de pedidos
+  { path: 'admin-estado-solicitudes', component: AdminEstadoSolicitudesComponent }, //ruta para la gestion de solicitudes
+  { path: 'admin-presentaciones', component: AdminPresentacionesComponent }, //ruta para la gestion de presentaciones del producto
+  { path: 'admin-productos', component: AdminProductosComponent }, //ruta para la gestion de productos
+  { path: 'cliente-pedido', component: ClientePedidoComponent }, //ruta para la realizacion del pedido
+  { path: 'admin-abastecer', component: AdminAbastecerComponent }, //ruta para abastecer a los distribuidores
+  { path: 'distribuidor-pedidos', component: DistribuidorPedidosComponent }
 ];
 
 @NgModule({

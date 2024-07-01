@@ -83,12 +83,35 @@ export class AdminServiceService {
     return this.http.delete<any>(`${this.apiUrl}/estado-solicitud/${id}`);
   }
 
+  //METODOS PARA LOS PRODUCTOS
   cargarProductos(): Observable<any> {
     return this.http.get<any[]>(`${this.apiUrl}/producto`);
   }
 
+  obtenerPresentacionesPorProducto(id_producto: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/producto/${id_producto}/presentaciones`);
+  }
+
+
+  obtenerPresentacionesPorID(id_presentacion: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/presentacion/${id_presentacion}`);
+  }
+
   agregarProducto(producto: any): Observable<any> {
+    console.log(producto);
     return this.http.post<any>(`${this.apiUrl}/producto`, producto);
+  }
+
+  verificarProducto(nombre: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/producto/nombre/${nombre}`);
+  }
+
+  agregarProductoPresentacion(productoPresentacion: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/productopresentacion`, productoPresentacion);
+  }
+
+  verificarProductoPresentacion(id_producto: number, id_presentacion: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/productopresentacion/${id_producto}/${id_presentacion}`);
   }
 
   eliminarProducto(id: number): Observable<any> {
